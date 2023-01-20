@@ -2,8 +2,9 @@ package github
 
 import (
 	"context"
+	"fmt"
 
-	"github.com/google/go-github/v38/github"
+	"github.com/google/go-github/v49/github"
 	"golang.org/x/oauth2"
 )
 
@@ -40,9 +41,11 @@ func NewClient(ctx context.Context, token string) Client {
 }
 
 func (c *client) GetCombinedStatus(ctx context.Context, owner, repo, ref string, opts *ListOptions) (*CombinedStatus, *Response, error) {
+	fmt.Printf("\033[1;31m... get combined status\033[0m\n")
 	return c.ghc.Repositories.GetCombinedStatus(ctx, owner, repo, ref, opts)
 }
 
 func (c *client) ListCheckRunsForRef(ctx context.Context, owner, repo, ref string, opts *ListCheckRunsOptions) (*ListCheckRunsResults, *Response, error) {
+	fmt.Printf("\033[1;31m... list check runs for ref: page %v\033[0m\n", opts.Page)
 	return c.ghc.Checks.ListCheckRunsForRef(ctx, owner, repo, ref, opts)
 }

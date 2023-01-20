@@ -1,8 +1,8 @@
-ARG GO_VERSION=1.16.7
+ARG GO_VERSION=1.19.1
 
 FROM golang:${GO_VERSION}-alpine
 
-ARG ORG=upsidr
+ARG ORG=skotep
 ARG REPO=merge-gatekeeper
 
 ENV GO111MODULE=on LANG=en_US.UTF-8
