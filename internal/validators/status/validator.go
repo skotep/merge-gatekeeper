@@ -4,6 +4,8 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"regexp"
+	"strings"
 
 	"github.com/upsidr/merge-gatekeeper/internal/github"
 	"github.com/upsidr/merge-gatekeeper/internal/multierror"
@@ -117,6 +119,12 @@ func (sv *statusValidator) Validate(ctx context.Context) (validators.Status, err
 			if ghaStatus.Job == ignored {
 				toIgnore = true
 				break
+			}
+			if strings.Contains(ignored, "*") {
+				if match, _ := regexp.MatchString(ignored, ghaStatus.Job); match {
+					toIgnore = true
+					break
+				}
 			}
 		}
 
