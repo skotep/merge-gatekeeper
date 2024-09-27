@@ -1,6 +1,6 @@
 ARG GO_VERSION=1.19.1
-
-FROM golang:${GO_VERSION}-alpine
+ARG IMAGE_REGISTRY=docker.io
+FROM ${IMAGE_REGISTRY}/golang:${GO_VERSION}-alpine
 
 ARG ORG=skotep
 ARG REPO=merge-gatekeeper
