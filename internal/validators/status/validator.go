@@ -225,6 +225,10 @@ func (sv *statusValidator) listGhaStatuses(ctx context.Context) ([]*ghaStatus, e
 	}
 
 	for _, run := range runResults {
+		if *run.Status == "completed" && *run.Conclusion == "cancelled" && run.CompletedAt.Sub(run.StartedAt.Time) < 1 {
+			continue
+		}
+
 		if run.Name == nil || run.Status == nil {
 			return nil, fmt.Errorf("%w name: %v, status: %v", ErrInvalidCheckRunResponse, run.Name, run.Status)
 		}
