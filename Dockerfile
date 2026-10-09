@@ -1,5 +1,5 @@
 ARG GO_VERSION=1.19.1
-ARG IMAGE_REGISTRY=docker.io
+ARG IMAGE_REGISTRY=public.ecr.aws/c9x9v8r6/striveworks
 FROM ${IMAGE_REGISTRY}/golang:${GO_VERSION}-alpine
 
 ARG ORG=skotep
